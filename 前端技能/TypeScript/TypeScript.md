@@ -16,6 +16,9 @@ tsc xx.ts #xx.ts是要运行的ts文件
 #运行编译号的js文件
 node xx.js #xx.js是上一步操作后产生的.js文件
 
+#安装轻量级运行环境lite-server
+npm install --save-dev lite-serve
+
 ```
 
 ## TypeScript语法
