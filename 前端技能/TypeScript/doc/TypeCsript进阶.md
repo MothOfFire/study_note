@@ -1,5 +1,7 @@
 # TypeScript进阶
 
+[返回TypeScript](../TypeScript.md)
+
 ## 1 TypeGuards类型守卫
 
 ```TypeScript

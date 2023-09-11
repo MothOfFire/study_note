@@ -1,5 +1,7 @@
 # TypeScript基础
 
+[返回TypeScript](../TypeScript.md)
+
 ## 1 变量声明
 
 ### 1.1 var声明
