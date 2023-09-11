@@ -19,6 +19,9 @@ node xx.js #xx.js是上一步操作后产生的.js文件
 #安装轻量级运行环境lite-server
 npm install --save-dev lite-serve
 
+#编译环境的ES版本更换
+tsc -t esx xx.ts #esx是ES版本
+
 ```
 
 ## TypeScript语法
