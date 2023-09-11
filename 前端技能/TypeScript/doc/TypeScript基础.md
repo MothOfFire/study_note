@@ -111,7 +111,6 @@ let log2 = (message: string, code: number = 0) => console.log(message);
 - 当绑定参数的数据类型时在冒号的前面添加?表示该参数时可选参数，可填可不填
 - 可选参数和默认参数要放在函数参数的末尾，否则会报错
 
-
 ### 2.12 void
 
 - 指变量本身就不存在
