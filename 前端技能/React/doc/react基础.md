@@ -297,11 +297,11 @@ onClick = {
 ```tsx
 
 //setState的异步开发
-this.setState((preState, preProps) => {
+this.setState((prevState, prevProps) => {
     return { /** 
                * state更新的状态对象
-               * preState：上一个状态的state对象
-               * preProps：上一个状态的props对象
+               * prevState：上一个状态的state对象
+               * prevProps：上一个状态的props对象
                */ }
   },
   () => {
@@ -317,3 +317,45 @@ this.setState((preState, preProps) => {
 ```
 
 ## 7 生命周期
+
+React组件的生命周期：初始化 => 构建函数 => getDerivedStateFromProps => render()：渲染UI => getDerivedStateFromProps => shouldComponentUpdate => render()：渲染UI => 更新 => componentDidUpdate => componentWillUnmount => 销毁
+
+### 7.1 Mounting 初始化
+
+- 创建虚拟DOM，渲染UI
+- constructor：初始化组件 和 state
+- componentDidMount：在组件创建好DOM元素以后、挂载进页面的时候调用
+
+### 7.2 Updating 更新
+
+- 更新虚拟DOM，重新渲染UI
+- componentWillReceiveProps：在组件接收到一个新的props（更新后）时调用，但是会产生无法控制的副作用，已经废弃了
+- getDerivedStateFromProps：替代componentWillReceiveProps的方法
+
+```tsx
+
+state getDerivedStateFromProps(nextProps, prevState) {
+  /**
+   * nextProps：
+   * prevState：
+   */
+}
+
+shouldComponentUpdate(nextProps, nextState) {
+  /**
+   * nextProps：
+   * nextState：
+   */
+  //
+}
+
+```
+
+- shouldComponentUpdate：控制组件页面是否更新；该函数返回一个布尔值，true则更新，false就不更新
+- componentDidUpdate：组件更新后被调用
+
+### 7.3 Unmounting 销毁
+
+- 删除虚拟DOM，移除UI
+- componentWillUnmount：组件销毁时调用
+- 可以当作析构函数 destructor 来使用
