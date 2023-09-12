@@ -93,6 +93,23 @@ npm install typescript-plugin-css-modules --save-dev
 
 ### 2.3 class类组件
 
+- React.Component
+
+```tsx
+
+class ClassName extends React.Component {
+
+}
+
+/*
+ * class React.Component< P = {}, S={}, SS = any>
+ * P = props;
+ * S ==> state组件状态
+ * SS ==> 自定义数据
+ */
+
+```
+
 ## 3 JSX 编程思维
 
 - JSX 并不是标准的 js 语法，它是 React 自创的一门语言

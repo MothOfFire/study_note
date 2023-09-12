@@ -13,6 +13,9 @@
 - pubilc文件夹：
 - src文件夹：代码资源存放的位置
   - assets文件夹：存放静态资源的文件夹
+    - icons文件夹：存放图标
+    - images文件夹：存放图片
+    - fonts文件夹：存放字体资源
   - components文件夹：存放自定义组件和组件样式表的文件夹
   - App.module.css文件：App.tsx的样式表
   - App.test.tsx
