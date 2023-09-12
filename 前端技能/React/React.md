@@ -22,6 +22,19 @@ npm start
 
 ```
 
+## 将JavaScipt的react项目转换成支持TypeScript的项目
+
+```bash
+
+#安装TypeScript依赖
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+
+```
+
+- 然后将App.js文件的后缀名改为.tsx，并在该文件中导入react import React from 'react';
+- 再将index文件的后缀名也改成.tsx后运行项目
+- 项目会自动生成tsconfig.json文件
+
 ## 1 [react-scripts](./doc/react-scripts.md)
 
 ## 2 [react基础](./doc/react基础.md)
