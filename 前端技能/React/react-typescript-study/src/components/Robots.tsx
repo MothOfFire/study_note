@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Robots.module.css';
 
 interface RobotsProps {
     id: number,//机器人id
@@ -8,11 +9,11 @@ interface RobotsProps {
 
 const Robots: React.FC<RobotsProps> = ({id, name, email}) => {
     
-    return <li>
+    return <div className={styles.cardContainer}>
         <img src={`https://robohash.org/${id}`} alt="robot"  />
         <h2>{ name }</h2>
         <p>{ email }</p>
-    </li>
+    </div>
 };
 
 export default Robots;
