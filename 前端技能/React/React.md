@@ -22,6 +22,8 @@ npm start
 
 ```
 
+[react的项目结构](./doc/react项目结构.md)
+
 ## 将JavaScipt的react项目转换成支持TypeScript的项目
 
 ```bash
