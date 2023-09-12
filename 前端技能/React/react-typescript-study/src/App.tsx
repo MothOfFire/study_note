@@ -18,8 +18,7 @@ function App() {
       <div className={styles.robotList}>
         {robots.map((r) => (
           <Robots id={r.id} email={r.email} name={r.name} />
-        ))}
-      ShoppingCart</div>
+        ))}</div>
     </div>
   );
 }

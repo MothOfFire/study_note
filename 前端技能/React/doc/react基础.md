@@ -110,6 +110,30 @@ class ClassName extends React.Component {
 
 ```
 
+State和Peops是控制页面变化的数据
+
+#### 2.3.1 State
+
+- state是组件的对内接口
+- 用于组件内部数据传递
+- 是私有的，可以认为state是组件的“私有属性”
+- 需要用setState()来修改state；如果直接修改state，组件不会触发render函数，页面不会渲染
+- 构造函数constructor是唯一可以初始化state的地方
+- State的更新是异步的：调用setState后，state不会立刻改变，所以不要依赖当前的state来计算下一个state
+
+#### 2.3.2 Props
+
+- props是组件对外的接口
+- 用于组件之间数据传递
+- 本质上组件就是一个函数，而props就是传入函数的参数，是从父组件内部传向子组件的数据
+- 所有的props都是只读属性的，都是Immutable对象
+
+#### 2.3.3 Immutable
+
+- 不变的
+- 对象一旦创建就不可更改，只能通过销毁、重建来改变数据
+- 通过判断内存地址是否一致来确定对象是否有经过修改
+
 ## 3 JSX 编程思维
 
 - JSX 并不是标准的 js 语法，它是 React 自创的一门语言
