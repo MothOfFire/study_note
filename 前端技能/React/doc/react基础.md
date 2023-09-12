@@ -207,10 +207,113 @@ import logo from './assets/images/logo.svg';
 
 ```
 
-## 6 事件
+## 6 React Event事件
+
+本节介绍ReactEvent事件的事件处理和异步处理
 
 ### 6.1 事件处理
 
+#### 6.1.1 React.MouseEven点击事件
+
+```tsx
+
+React.MouseEvent< HTNLButtonElement, MouseEvent >
+
+/**
+ * HTNLButtonElement ==> HTML按钮元素 
+ * MouseEvent ==> 鼠标事件 
+ */
+
+handleClick = (e: React.MouseEvent< HTNLButtonElement, MouseEvent >) => {
+  //封装的事件处理函数逻辑
+  /**
+   * 如果不使用箭头函数，函数体中的this就不是指向包含它的对象，而是它自己本身* 不过可以在constructor构造函数中通过this.handleClick = this.handleClick.bind(this)重新给handleClick绑定this
+   */
+}
+
+onClick = {
+  this.handleClick
+}
+
+//e: React.MouseEvent< HTNLButtonElement, MouseEvent >
+//可以通过e.nativeEvent来访问原生的HTML事件
+
+/**
+ * e.target：事件发生的元素
+ * e.currentTarget：事件处理绑定的元素
+ */
+
+```
+
+- 泛型中的第一个参数指明了事件目标的类型，指示了事件所发生的元素的类型
+- 泛型中的第二个参数指明了事件对象的类型，指示了事件对象的类型
+
 ### 6.2 异步处理
+
+处理异步、动态显示
+
+- AJAX阿贾克斯
+- callback回调函数：建立一个程序栈，将回调函数以参数的形式安照先进先出的原则存放到程序栈中，依次执行代码的逻辑
+- 使用回调函数容易导致回调地狱，使用promise可以有效避免回调地狱
+
+#### 6.2.1 获取网络API数据
+
+[获取假的json数据的网址](https://jsonplaceholder.typicode.com)
+
+- 要想使用网络API的数据，需要先将App.tsx中的App由函数组件转换成类组件
+- 定义好Props和State接口
+- 在类组件中添加constructor构造函数和componentDidMount生命周期函数
+- 在componentDidMount中对网络API的数据进行处理
+
+```jsx
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      robotGallery: [],
+    }
+  }
+
+  componentDidMount(): void {
+    // fetch(参数是需要处理的props)
+    fetch("https://jsonplaceholder.typicode.com/users")
+        .then( (response) => response.json())
+        .then( (data) => this.setState({robotGallery: data}));
+  }
+
+  /**
+   * (response) => response.json()：是将json以外的数据过滤掉
+   * (data) => this.setState({robotGallery: data})：是将过滤完的数据赋值给state.robotGallery
+   */
+
+```
+
+#### 6.2.2 setState的异步开发
+
+- setState方法是异步更新，同步执行
+- setState方法本身不是异步的，但对state的处理机制个人一种异步的假象
+- state处理一般发生在生命周期变化的时候
+
+```tsx
+
+//setState的异步开发
+this.setState((preState, preProps) => {
+    return { /** 
+               * state更新的状态对象
+               * preState：上一个状态的state对象
+               * preProps：上一个状态的props对象
+               */ }
+  },
+  () => {
+    /* 异步处理函数 */
+  }
+)
+
+/**
+ * setState方法的第一个参数：一个对象，包含要更新的状态的一部分或全部。这个对象会与当前的状态进行合并，以产生新的状态。可以使用对象的形式来更新多个状态值。
+ * setState方法的第二个参数（可选）：一个回调函数，在状态更新完成并且组件重新渲染后被调用。通常用于在状态更新完成后执行一些操作。
+ */
+
+```
 
 ## 7 生命周期

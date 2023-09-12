@@ -37,6 +37,13 @@ npm install --save typescript @types/node @types/react @types/react-dom @types/j
 - 再将index文件的后缀名也改成.tsx后运行项目
 - 项目会自动生成tsconfig.json文件
 
+```bash
+
+#安装react-icons插件
+npm install react-icons
+
+```
+
 ## 1 [react-scripts](./doc/react-scripts.md)
 
 ## 2 [react基础](./doc/react基础.md)
