@@ -131,7 +131,40 @@ npm install typescript-plugin-css-modules --save-dev
 
 ## 5 资源配置
 
+一般将资源统一存放在assets文件中，所以在src下创建assets文件夹
+
 ### 5.1 加载媒体资源与字体
+
+#### 5.1.1 图片资源的加载
+
+- 在assets文件夹下创建icons文件夹和images文件夹
+- icons文件夹存放图标文件
+- images文件夹存放图片
+- 引用图片资源
+
+```tsx
+
+import logo from './assets/images/logo.svg';
+
+<img src={ logo } alt="logo" className={styles.appLogo} />
+
+```
+
+#### 5.1.2 文字资源
+
+- 在assets文件夹下创建fonts文件夹
+- fonts文件夹存放字体资源
+- 引用字体资源，先将字体资源拖入fonts文件夹，再在index.css文件中添加
+
+```css
+
+/*文字样式*/
+@font-face {
+  font-family: 'Slidefu';
+  src: local('Slidefu') url(./assets/fonts/Slidefu-Regular-2.ttf) form('truetype');
+}
+
+```
 
 ## 6 事件
 

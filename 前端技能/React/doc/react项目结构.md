@@ -12,6 +12,7 @@
 - node_modules文件夹：项目依赖的存放位置
 - pubilc文件夹：
 - src文件夹：代码资源存放的位置
+  - assets文件夹：存放静态资源的文件夹
   - components文件夹：存放自定义组件和组件样式表的文件夹
   - App.module.css文件：App.tsx的样式表
   - App.test.tsx
