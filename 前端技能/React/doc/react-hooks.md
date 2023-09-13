@@ -169,10 +169,54 @@ const Robots: React.FC<RobotsProps> = ({id, name, email}) => {
 
 ```tsx
 
+import React, { useState } from "react";
 
+interface AppStateValue {
+    username: string,
+    shoppingCart: {
+        items: {
+            id: number,
+            name: string
+        }[]
+    }
+}
+
+const defaultContextValue: AppStateValue = {
+    username: "hua",
+    //购物车数据
+    shoppingCart: {
+        items: []
+    }
+  }
+  
+//通过createContext函数创建上下文，函数要求我们必须有一个默认初始值
+export const appContext = React.createContext(defaultContextValue);
+//让上下文可以共享setState方法
+//<React.Dispatch<React.SetStateAction<AppStateValue>>>是setState的类型
+export const appSetStateContext = React.createContext<React.Dispatch<React.SetStateAction<AppStateValue>> | undefined>(undefined);
+
+  //创建上下文组件
+export const AppStateProvider: React.FC<any> = (props: any) => {
+    const [ state, setState ] = useState(defaultContextValue);
+    return (
+        <appContext.Provider value={state}>
+            <appSetStateContext.Provider value={setState}>
+                {props.children}
+            </appSetStateContext.Provider>
+        </appContext.Provider>
+    )    
+}
 
 ```
 
 ## 3 高阶组件HOC
+
+- HOC公式：```const hoc = hightOrde(wrappedComponent);```
+- 高阶组件就是一个返回了组件的函数
+- 通过组件嵌套的方法给子组件添加更多的功能
+- 接收一个组件作为参数并返回一个经过改造的新组件
+- 高阶组件可以抽取重复代码，实现组件的复用
+- 高阶组件可以条件渲染，控制组件的渲染逻辑（渲染劫持）
+- 高阶组件可以捕获/劫持被处理组件的生命周期
 
 ## 4 自定义组件

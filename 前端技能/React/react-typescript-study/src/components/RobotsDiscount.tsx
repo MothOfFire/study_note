@@ -10,24 +10,12 @@ export interface RobotsProps {
     addToCart: (id: number,name: string) => void,
 }
 
-const Robots: React.FC<RobotsProps> = ({id, name, email, addToCart}) => {
+const RobotsDiscount: React.FC<RobotsProps> = ({id, name, email, addToCart}) => {
     const value = useContext(appContext);
-    // const setState = useContext(appSetStateContext);
-    // const addToCart = () => {
-    //     if(setState) {
-    //         setState((state) => {
-    //             return {
-    //                 ...state,
-    //                 shoppingCart: {
-    //                     items: [...state.shoppingCart.items, {id, name}]
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
     return (
             <div className={styles.cardContainer}>
                 <img src={`https://robohash.org/${id}`} alt="robot"  />
+                <h2>打折商品</h2>
                 <h2>{ name }</h2>
                 <p>{ email }</p>
                 <p>作者：{value.username}</p>
@@ -42,4 +30,4 @@ const Robots: React.FC<RobotsProps> = ({id, name, email, addToCart}) => {
     )
 };
 
-export default withAddToCart(Robots);
+export default withAddToCart(RobotsDiscount);

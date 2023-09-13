@@ -4,17 +4,18 @@ import styles from './App.module.css';
 //导入robots的假数据，用于项目的编写测试
 // import robots from './mockdata/robots.json';
 import Robots from './components/Robots';
+import RobotsDiscount from './components/RobotsDiscount';
 import ShoppingCart from './components/ShoppingCart';
 
 
-interface State {
-  robotGallery: any[],
-  count: number,
-}
+// interface State {
+//   robotGallery: any[],
+//   count: number,
+// }
 
-interface Props {
+// interface Props {
   
-}
+// }
 // 类组件的声明
 // class App extends React.Component<Props, State > {
   // constructor(props: Props) {
@@ -83,7 +84,7 @@ const App: React.FC = (props) => {
         const response = await fetch("https://jsonplaceholder.typicode.com/users");
         const data = await response.json();
         setRobotGallery(data);
-      } catch (e: any) {
+      } catch (e:any) {
         setError(e.message)
       }
       setLoading(false);
@@ -113,7 +114,11 @@ const App: React.FC = (props) => {
       { !loading ?
         (
           <div className={styles.robotList}>
-            {robotGallery.map((r: any) => (
+            {robotGallery.map(
+              (r: any, index: any) => (
+                (index % 2 === 0) ? 
+              <RobotsDiscount id={r.id} email={r.email} name={r.name} />
+              :
               <Robots id={r.id} email={r.email} name={r.name} />
             ))}\
           </div>
