@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
  import logo from './assets/images/logo.svg';
 import styles from './App.module.css';
 //导入robots的假数据，用于项目的编写测试
@@ -15,53 +15,94 @@ interface State {
 interface Props {
   
 }
+// 类组件的声明
+// class App extends React.Component<Props, State > {
+  // constructor(props: Props) {
+  //   super(props);
+  //   //初始化state
+  //   this.state = {
+  //     robotGallery: [],
+  //     count: 0
+  //   }
+  // }
 
-class App extends React.Component<Props, State > {
+  // componentDidMount(): void {
+  //   // fetch(参数是需要处理的props)
+  //   fetch("https://jsonplaceholder.typicode.com/users")
+  //       .then( (response) => response.json())
+  //       .then( (data) => this.setState({robotGallery: data}));
+  // }
 
-  constructor(props: Props) {
-    super(props);
-    //初始化state
-    this.state = {
-      robotGallery: [],
-      count: 0
-    }
-  }
+  // render(): React.ReactNode {
+  //   return (
+  //     // 这种css的注入方法被称为css in js (JSS)
+  //     <div className={styles.app}>
+  //       <div className={styles.appHeader}>
+  //         <img src={logo} alt="logo" className={styles.appLogo} />
+  //         <h1>罗伯特机器人炫光旋转滨周螺旋上升online购物平台的名字</h1>
+  //       </div>
+  //       <button 
+  //         onClick={
+  //           () => {
+  //             this.setState({count: this.state.count + 1}, () => {
+  //               console.log(this.state.count);
+  //             });
+  //           }
+  //         }
+  //       >
+  //         count++
+  //       </button>
+  //       <span>count: { this.state.count }</span>
+  //       <ShoppingCart />
+  //       <div className={styles.robotList}>
+  //         {this.state.robotGallery.map((r) => (
+  //           <Robots id={r.id} email={r.email} name={r.name} />
+  //         ))}</div>
+  //     </div>
+  //   );
+  // }
 
-  componentDidMount(): void {
-    // fetch(参数是需要处理的props)
+// }
+//函数式组件
+const App: React.FC = (props) => {
+
+  const [count, setCount] = useState< number >(0);
+  const [robotGallery, setRobotGallery] = useState< any >([]);
+
+  useEffect(() => {
+    document.title = ` 点击了${count}次 `;
+  }, [count]);
+
+  useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
-        .then( (response) => response.json())
-        .then( (data) => this.setState({robotGallery: data}));
-  }
+      .then((response) => response.json())
+      .then((data) => setRobotGallery(data));
+  }, []);
 
-  render(): React.ReactNode {
-    return (
-      // 这种css的注入方法被称为css in js (JSS)
-      <div className={styles.app}>
-        <div className={styles.appHeader}>
-          <img src={logo} alt="logo" className={styles.appLogo} />
-          <h1>罗伯特机器人炫光旋转滨周螺旋上升online购物平台的名字</h1>
-        </div>
-        <button 
-          onClick={
-            () => {
-              this.setState({count: this.state.count + 1}, () => {
-                console.log(this.state.count);
-              });
-            }
-          }
-        >
-          count++
-        </button>
-        <span>count: { this.state.count }</span>
-        <ShoppingCart />
-        <div className={styles.robotList}>
-          {this.state.robotGallery.map((r) => (
-            <Robots id={r.id} email={r.email} name={r.name} />
-          ))}</div>
+  return (
+    // 这种css的注入方法被称为css in js (JSS)
+    <div className={styles.app}>
+      <div className={styles.appHeader}>
+         <img src={logo} alt="logo" className={styles.appLogo} />
+         <h1>罗伯特机器人炫光旋转滨周螺旋上升online购物平台的名字</h1>
       </div>
-    );
-  }
+      <button 
+        onClick={
+          () => {
+            setCount(count + 1);
+          }
+        }
+      >
+        count++
+      </button>
+      <span>count: { count }</span>
+      <ShoppingCart />
+      <div className={styles.robotList}>
+        {robotGallery.map((r: any) => (
+          <Robots id={r.id} email={r.email} name={r.name} />
+        ))}</div>
+    </div>
+  );
 }
 
 export default App;
