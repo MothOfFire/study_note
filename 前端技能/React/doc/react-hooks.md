@@ -61,7 +61,18 @@ useEffect(() => {
     document.title = `点击${count}次`;
 }, [count]);
 
+ const [robotGallery, setRobotGallery] = useState< any >([]);
+ useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => setRobotGallery(data));
+  }, []);
+
 ```
+
+#### 1.3.4 使用useEffect的注意事项
+
+- 在去掉第二个参数的时候，副作用函数在页面的每一次渲染都会执行，如果副作用函数是用于获取API数据，会导致副作用函数不断获取数据导致恶性循环，要避免这种循环，要在第二个参数上添加空数组
 
 ### 1.4 常用的自带的Effect Hooks
 
@@ -73,6 +84,94 @@ useEffect(() => {
 - useDebugValue：
 
 ## 2 全局数据传递
+
+### 2.1 React上下文 Context
+
+- 通过createContext函数创建上下文，函数要求我们必须有一个默认初始值，并将默认初始值作为函数的参数
+- 要用appContext.Provider将要传递数据的组件包裹起来
+
+```tsx
+
+const defaultContextValue = {
+  name: "hua"
+}
+
+//通过createContext函数创建上下文，函数要求我们必须有一个默认初始值
+export const appContext = React.createContext(defaultContextValue);
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <appContext.Provider value={defaultContextValue}>
+      <App />
+    </appContext.Provider>
+  </React.StrictMode>
+);
+
+```
+
+- 在要接收数据的组件中先引入创建好的Context
+- 在用Consumer将要接收的组件包裹起来，并将组件写在箭头函数的返回值内
+
+```tsx
+//引入index的context
+import { appContext } from '../index';
+
+
+const Robots: React.FC<RobotsProps> = ({id, name, email}) => {
+    
+    return (
+        <appContext.Consumer>
+            {
+                (value) => {
+                    return (
+                        <div className={styles.cardContainer}>
+                            <img src={`https://robohash.org/${id}`} alt="robot"  />
+                            <h2>{ name }</h2>
+                            <p>{ email }</p>
+                            <p>作者：{value.name}</p>
+                        </div>
+                    )
+                }
+            }
+        </appContext.Consumer>
+    )
+};
+
+```
+
+### 2.2 使用useContext接收Context
+
+```tsx
+
+import { appContext } from '../index';
+import { useContext } from 'react';
+
+const Robots: React.FC<RobotsProps> = ({id, name, email}) => {
+    const value = useContext(appContext);
+    return (
+            <div className={styles.cardContainer}>
+                <img src={`https://robohash.org/${id}`} alt="robot"  />
+                <h2>{ name }</h2>
+                <p>{ email }</p>
+                <p>作者：{value.name}</p>
+            </div>
+    )
+};
+
+```
+
+### 2.3 组件化Context Provider
+
+- 先在src文件夹下创建AppState.tsx文件，在该文件中创建全局State和上下文关系context provider
+
+```tsx
+
+
+
+```
 
 ## 3 高阶组件HOC
 
