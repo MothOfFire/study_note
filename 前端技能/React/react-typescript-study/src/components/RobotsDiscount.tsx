@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import styles from './Robots.module.css';
 import { appContext } from '../AppState';
-import { withAddToCart } from './AddToCart';
+import { useAddToCart } from './AddToCart';
 
 export interface RobotsProps {
     id: number,//机器人id
     name: string,//机器人名称
     email: string,//机器人邮箱地址
-    addToCart: (id: number,name: string) => void,
 }
 
-const RobotsDiscount: React.FC<RobotsProps> = ({id, name, email, addToCart}) => {
+const RobotsDiscount: React.FC<RobotsProps> = ({id, name, email }) => {
     const value = useContext(appContext);
+    const addToCart = useAddToCart();
     return (
             <div className={styles.cardContainer}>
                 <img src={`https://robohash.org/${id}`} alt="robot"  />
@@ -30,4 +30,4 @@ const RobotsDiscount: React.FC<RobotsProps> = ({id, name, email, addToCart}) => 
     )
 };
 
-export default withAddToCart(RobotsDiscount);
+export default RobotsDiscount;
