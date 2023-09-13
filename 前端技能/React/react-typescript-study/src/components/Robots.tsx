@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styles from './Robots.module.css';
-import { appContext, appSetStateContext } from '../AppState';
+import { appContext } from '../AppState';
 import { withAddToCart } from './AddToCart';
 
 export interface RobotsProps {
