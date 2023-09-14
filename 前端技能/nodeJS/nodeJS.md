@@ -30,6 +30,18 @@ npm -V
 - 打开 chrome 访问 chrome://inspect
 - 在代码中增加 debugger（断点）重启服务，即可调试
 
+## nodeJS 与前端 JS 的区别
+
+- 都用 JS 语法
+  
+  - 变量的定义和类型
+  - 函数的定义和执行
+  - ES6 的 class Promise 等语法
+- Web API：前端页面的 DOM BOM 事件 Ajax 等，前端 JS 可以使用，因为是浏览器环境；nodeJS 无法使用，因为是 node 环境
+- nodeJS API：处理http，nodeJS 可以使用，因为是 node 环境；前端 JS 无法使用，因为是浏览器环境
+- 前端 JS = JS 语法 + Web API
+- nodeJS = JS 语法 + nodeJS API
+
 ## 1 [npm](./doc/npm.md)
 
 ## 2 [common模块化.js](./doc/common.js模块化.md)
