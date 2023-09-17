@@ -29,6 +29,18 @@ app.use(function *(next){
 
 app.use(require('koa-static')(__dirname + '/public'));
 
+//模拟登录
+app.use(async (ctx, next) => {
+  const query = ctx.query;
+  if(query.user === 'hua') {
+    //模拟登录成功
+    await next();//执行下一步的中间件
+  } else {
+    // 模拟登录失败
+    ctx.body = '请登录';
+  }
+});
+
 // 注册路由
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
