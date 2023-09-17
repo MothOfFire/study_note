@@ -6,6 +6,7 @@ var app = require('koa')()
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var comments = require('./routes/comments');
 
 // error handler
 onerror(app);
@@ -28,9 +29,10 @@ app.use(function *(next){
 
 app.use(require('koa-static')(__dirname + '/public'));
 
-// routes definition
+// 注册路由
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(comments.routes(), comments.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {
